@@ -148,3 +148,11 @@ layer base {
     @apply font-sans;
   }
 }
+
+aside_button {
+  @apply block p-2 rounded-lg hover:bg-gray-100;
+}
+
+aside_button_active {
+  @apply bg-gray-100 text-gray-900;
+}
