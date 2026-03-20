@@ -9,7 +9,11 @@ const Header = () => {
                 <h1 className="text-3xl text-[#fdc53a] content-center px-1">Hills of Glory</h1><h1 className="text-3xl content-center px-1">Mabalacat</h1>
             </div>
         </a>
-        <Button variant="outline" asChild>
+        <Button 
+          variant="outline"
+          className="bg-black-700/50 border-gray-500"
+          asChild
+        >
           <a href="/dashboard">Dashboard</a>
         </Button>
     </header>
