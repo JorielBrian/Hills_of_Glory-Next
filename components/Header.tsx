@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 
 const Header = () => {
   return (
-    <header className="flex w-full justify-between px-15 py-5 bg-black/60">
+    <header className="flex w-full justify-between px-15 py-5">
         <a href="/">
             <div className="flex">
                 <img src="/hog_logo.png" alt="logo" className="size-15" />
