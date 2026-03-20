@@ -61,7 +61,7 @@ header {
 }
 
 main {
-  @apply flex-1 p-10 text-white;
+  @apply flex-1 text-white;
 }
 
 footer {
