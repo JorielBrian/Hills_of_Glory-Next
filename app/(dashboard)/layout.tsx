@@ -4,6 +4,7 @@ import Footer from '@/components/Dashboard/Footer'
 import Header from '@/components/Dashboard/Header'
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import "@/app/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,14 +26,19 @@ export const metadata: Metadata = {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className='w-full h-screen bg-black/60'>
-        <Header />
-        <section className='flex'>
-          <Aside />
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >  
+      <body className="flex bg-[#f1f1f1]">
+        <Aside />
+        <div className='w-full bg-black/60'>
+          <Header />
           {children}
-        </section>
-        <Footer />
-    </main>
+          <Footer />
+        </div>
+      </body>
+    </html>
   )
 }
 
