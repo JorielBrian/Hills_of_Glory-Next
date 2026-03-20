@@ -1,5 +1,5 @@
-import members from "@/app/api/db";
+// import members from "@/app/api/db";
 
-export async function GET() {
-  return Response.json(members);
-}
+// export async function GET() {
+//   return Response.json(members);
+// }
