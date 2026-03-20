@@ -1,42 +1,15 @@
+import React from 'react'
 import Header from "@/components/Header";
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "@/app/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Hills of Glory - Mabalacat",
-  description: "Web application for Hills of Glory Mabalacat",
-  icons: {
-    icon: "/hog_logo.png",
-  },
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-[url(/background_one.jpg)] bg-cover">
+    <main className="bg-[url(/background_one.jpg)] bg-cover">
+      <div className="p-5 bg-black/60">
         <Header />
-        <main className="p-5 bg-black/60">
-          {children}
-        </main>
-      </body>
-    </html>
-  );
+        {children}
+      </div>
+    </main>
+  )
 }
+
+export default layout
