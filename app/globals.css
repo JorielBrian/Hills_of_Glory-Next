@@ -53,11 +53,11 @@ body {
 }
 
 aside {
-  @apply sticky top-0 w-50 h-screen p-10;
+  @apply sticky top-0 w-fit h-screen p-2 2xl:w-50;
 }
 
 header {
-  @apply flex w-full h-20 px-10 py-15 items-center justify-between;
+  @apply flex w-full h-20 px-4 2xl:px-10 py-15 items-center justify-between;
 }
 
 main {
