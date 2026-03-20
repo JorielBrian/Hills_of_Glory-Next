@@ -20,8 +20,6 @@
 }
 
 body {
-  background: var(--background);
-  background-image: url("/background_one.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
