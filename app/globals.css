@@ -151,7 +151,7 @@ aside {
 }
 
 header {
-  @apply flex w-full h-20 px-4 2xl:px-10 py-15 items-center justify-between;
+  @apply flex w-full h-20 px-4 2xl:px-10 py-13 items-center justify-between;
 }
 
 main {
