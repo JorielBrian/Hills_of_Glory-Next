@@ -1,7 +1,7 @@
 import React from 'react'
-import Aside from '@/components/Dashboard/Aside'
-import Footer from '@/components/Dashboard/Footer'
-import Header from '@/components/Dashboard/Header'
+import Aside from '@/components/Dashboard/Sections/Aside'
+import Footer from '@/components/Dashboard/Sections/Footer'
+import Header from '@/components/Dashboard/Sections/Header'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
