@@ -48,26 +48,6 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-body {
-  @apply text-white bg-cover bg-center bg-fixed;
-}
-
-aside {
-  @apply sticky top-0 w-fit h-screen p-2 2xl:w-50;
-}
-
-header {
-  @apply flex w-full h-20 px-4 2xl:px-10 py-15 items-center justify-between;
-}
-
-main {
-  @apply flex-1 text-white;
-}
-
-footer {
-  @apply w-full h-20 flex items-center justify-center;
-}
-
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -149,10 +129,41 @@ layer base {
   }
 }
 
-aside_button {
-  @apply block p-2 rounded-lg hover:bg-gray-100;
+body {
+  @apply text-white bg-cover bg-center bg-fixed;
 }
 
-aside_button_active {
-  @apply bg-gray-100 text-gray-900;
+/* ASIDE */
+aside {
+  @apply sticky top-0 w-fit h-screen p-2 2xl:w-50;
+}
+
+.aside_button {
+  @apply flex p-5 text-white justify-between gap-2 rounded-lg hover:bg-gray-100/60 hover:no-underline;
+}
+
+.aside_button_active {
+  @apply bg-gray-100/20 text-white;
+}
+
+.aside_icon {
+  @apply size-7 text-white;
+}
+
+header {
+  @apply flex w-full h-20 px-4 2xl:px-10 py-15 items-center justify-between;
+}
+
+main {
+  @apply flex-1;
+}
+
+footer {
+  @apply w-full h-20 flex items-center justify-center;
+}
+
+/* DASHBOARD */
+.dashboard_main {
+  @apply flex flex-1 flex-col w-full h-screen p-10 gap-4 rounded-xl text-black
+    *:rounded-lg;
 }
