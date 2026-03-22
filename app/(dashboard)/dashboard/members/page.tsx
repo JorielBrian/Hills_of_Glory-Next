@@ -1,28 +1,11 @@
 // import members from "@/app/api/db"
 import { sampleMembers } from "@/constants";
 import { Button } from "@/components/ui/button";
-// import { useEffect, useState } from "react"
 
 const Members = () => {
-  // const [search, setSearch] = useState("");
-  // const [statusFilter, setStatusFilter] = useState("all");
-
-  // useEffect(() => {
-  //   fetchMembers();
-  // }, [search, statusFilter]);
-
-  // const fetchMembers = async () => {
-  //   try {
-  //     const res = await fetch(`/api/members?search=${search}&status=${statusFilter}`);
-  //     const data = await res.json();
-  //     setMembers(data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
 
   return (
-    <div className="flex h-full w-full flex-1 flex-col gap-6 rounded-xl text-black p-6">
+    <main className="dashboard_main">
       <div className="bg-white rounded-lg shadow-sm p-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
@@ -31,7 +14,7 @@ const Members = () => {
           </div>
           <div className="flex flex-col mt-4 sm:mt-0">
             <Button className="p-5 bg-transparent text-black border shadow shadow-stone-400">
-              <a href="/members/create">
+              <a href="/dashboard/members/create">
                 Add Member
               </a>
             </Button>
@@ -39,16 +22,16 @@ const Members = () => {
         </div>
 
         {/* Filters */}
-        <div className="mb-6 flex flex-col sm:flex-row gap-4">
-          {/* <input
+        {/* <div className="mb-6 flex flex-col sm:flex-row gap-4">
+          <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search members..."
             className="w-full border px-3 py-2 rounded-md"
-          /> */}
+          />
 
-          {/* <select
+          <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="border px-3 py-2 rounded-md"
@@ -56,8 +39,8 @@ const Members = () => {
             <option value="all">All Status</option>
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
-          </select> */}
-        </div>
+          </select>
+        </div> */}
 
         {/* Members Grid */}
         {sampleMembers.length > 0 ? (
@@ -104,7 +87,7 @@ const Members = () => {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }
 
