@@ -164,11 +164,11 @@ footer {
 
 /* HOME */
 .home_nav_button {
-  @apply bg-transparent text-white text-lg hover:bg-gray-100/40 hover:no-underline;
+  @apply bg-transparent text-white text-lg font-bold hover:bg-gray-100/40 hover:no-underline;
 }
 
 .home_dropdown_item {
-  @apply bg-transparent;
+  @apply bg-transparent p-2 text-white rounded-lg hover:bg-gray-100/40 hover:no-underline;
 }
 
 /* DASHBOARD */
