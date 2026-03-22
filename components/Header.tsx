@@ -5,6 +5,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+import Link from "next/link"
 
 const Header = () => {
 
@@ -50,41 +59,52 @@ const Header = () => {
 
   return (
     <header>
-        <a href="/">
+        <Link href="/">
             <div className="flex text-xl 2xl:text-3xl">
                 <img src="/hog_logo.png" alt="logo" className="size-10 2xl:size-15" />
                 <h1 className="text-[#fdc53a] content-center px-1">Hills of Glory</h1><h1 className="content-center px-1">Mabalacat</h1>
             </div>
-        </a>
-        <div className="flex w-1/3 justify-between">
-          <Button className="home_nav_button">
-            <a href="/">Home</a>
-          </Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button className="home_nav_button">
-                Ministries
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-black/20 w-fit">
-              {items.map((item) => (
-                <DropdownMenuItem key={item.name}>
-                  <a href={`/${item.href}`}>
-                    <Button className="home_dropdown_item">
-                      {item.name}
-                    </Button>
-                  </a>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Button className="home_nav_button">
-            <a href="/">Services</a>
-          </Button>
-          <Button className="home_nav_button">
-            <a href="/">About</a>
-          </Button>
-        </div>
+        </Link>
+
+        <NavigationMenu>
+          <NavigationMenuList>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild className="home_nav_button">
+                <Link href="/">Home</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="bg-transparent w-fit">
+              <NavigationMenuTrigger className="home_nav_button">Ministries</NavigationMenuTrigger>
+              <NavigationMenuContent className="bg-black/70 w-9">
+                <ul className="p-2 flex flex-col gap-4 w-72">
+                  {items.map((item) => (
+                    <li key={item.name}>
+                      <Link href={`/${item.href}`} className="home_dropdown_item text-white">
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild className="home_nav_button">
+                  <Link href="/">Services</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild className="home_nav_button">
+                <Link href="/">About</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+          </NavigationMenuList>
+        </NavigationMenu>
+
         <Button 
           variant="outline"
           className="bg-black-700/50 border-gray-500"
