@@ -150,10 +150,15 @@ aside {
   @apply size-7 text-white;
 }
 
+/* HEADER */
 header {
   @apply flex flex-col w-full h-fit px-4 py-13 text-white items-center justify-between
     lg:flex-row
     2xl:px-10;
+}
+
+.text_logo {
+  @apply font-bold text-shadow-lg;
 }
 
 main {
