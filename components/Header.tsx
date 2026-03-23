@@ -1,11 +1,5 @@
 import { Button } from "@/components/ui/button"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -110,7 +104,8 @@ const Header = () => {
           className="bg-black-700/50 border-gray-500"
           asChild
         >
-          <a href="/dashboard">Dashboard</a>
+          {/* <Link href="/dashboard">Dashboard</Link> */}
+          <Link href="/sign-in">Sign In</Link>
         </Button>
     </header>
   )

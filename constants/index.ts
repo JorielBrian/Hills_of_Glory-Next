@@ -99,3 +99,32 @@ export const sampleMembers: Member[] = [
         is_active: true
     }
 ];
+
+// AUTHENTICATION
+
+interface FIELDNAME_PROP {
+    userName: string,
+    firstName: string,
+    middleName: string,
+    lastName: string,
+    email: string,
+    password: string
+}
+
+export const FIELD_NAMES: FIELDNAME_PROP = {
+    userName: "User Name",
+    firstName: "First Name",
+    middleName: "Middle Name",
+    lastName: "Last Name",
+    email: "Email",
+    password: "Password",
+}
+
+export const FIELD_TYPES = {
+    userName: "text",
+    firstName: "text",
+    middleName: "text",
+    lastName: "text",
+    email: "email",
+    password: "password",
+}
