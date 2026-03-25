@@ -1,3 +1,5 @@
+import { GENDER } from "./constants/enums/member/gender";
+
 interface Member {
     id: number,
     first_name: string,
@@ -23,4 +25,13 @@ interface Member {
     life_group_id: number,
     network_leader_id: number,
     is_active: boolean
+}
+
+export interface AuthCredentials {
+    userName: string;
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    gender: typeof GENDER[number];
 }

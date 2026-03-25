@@ -38,7 +38,7 @@ export const users = pgTable("users", {
     facebook: varchar('facebook', { length: 255 }).unique(),
 
     // PERSONAL
-    occupation: occupationEnum('occupation').notNull(),                                     // Occupation Enum
+    occupation: occupationEnum('occupation').default(OCCUPATION[5]).notNull(),                                     // Occupation Enum
 
     // CHURCH
     invitedBy: uuid('invited_by_id').references((): AnyPgColumn => users.id),               //  Invited by another user
