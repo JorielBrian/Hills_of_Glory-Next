@@ -18,10 +18,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     return null;
                 }
 
+                const email = credentials.email.toString().toLowerCase();
+
                 const user = await db
                     .select()
                     .from(users)
-                    .where(eq(users.email, credentials.email.toString()))
+                    .where(eq(users.email, email))
                     .limit(1);
 
                 if(user.length === 0 ) return null;

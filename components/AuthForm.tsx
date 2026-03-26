@@ -1,12 +1,5 @@
 'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Controller, useForm } from "react-hook-form"
-
-import * as z from "zod"
-import Link from "next/link"
-
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -21,49 +14,49 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
 
+import { z, ZodTypeAny} from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants/index";
-// import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation"
+import { Controller, useForm, Path } from "react-hook-form"
 
-interface Props {
-  schema: z.ZodTypeAny;
-  defaultValues: any;
-  onSubmit: (data: any) => Promise<{ success: boolean; error?: string }>;
+
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+import { useRouter } from "next/navigation";
+import Link from "next/link"
+
+interface Props<T extends ZodTypeAny> {
+  schema: T;
+  defaultValues: z.infer<T>;
+  onSubmit: (data: z.infer<T>) => Promise<{ success: boolean; error?: string }>;
   type: "SIGN_IN" | "SIGN_UP";
 }
 
-const AuthForm = ({
+const AuthForm = <T extends ZodTypeAny>({
   type,
   schema,
   defaultValues,
   onSubmit
-}: Props) => {
+}: Props<T>) => {
   const router = useRouter();
 
-  const form = useForm({
+  const form = useForm<z.infer<T>>({
     resolver: zodResolver(schema),
     defaultValues: defaultValues,
   });
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: z.infer<T>) => {
     
     console.log("SUBMITTING", data);
 
     const result = await onSubmit(data);
 
     console.log("RESULT", result);
-    
-    if(result.success){
-      // toast({
-      //   title: 'Success',
-      //   description: isSignIn
-      //     ? "You have successfully signed in."
-      //     : "You have successfully signed up"
-      // });
 
-      router.push('/dashboard')
+    if(result.success){
+      router.push('/dashboard');
     }
    };
 
@@ -80,7 +73,7 @@ const AuthForm = ({
       <CardContent>
         <form id="signInForm" onSubmit={form.handleSubmit(handleSubmit)}>
           <FieldGroup>
-            {Object.keys(defaultValues).map((field) => (
+            {(Object.keys(defaultValues) as Array<Path<z.infer<T>>>).map((field) => (
               <Controller
                 key={field}
                 name={field}

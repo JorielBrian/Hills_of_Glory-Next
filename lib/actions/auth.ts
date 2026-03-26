@@ -24,7 +24,7 @@ export const signInWithCredentials = async (
       password,
       redirect: false,
     });
-    
+
     return { success: true };
   } catch (error) {
     console.log(error, "Sign in error");
@@ -45,6 +45,8 @@ export const signUp = async (params: AuthCredentials) => {
     return { success: false, error: "Missing required fields" };
   }
 
+  const emailNormalized = email.toLowerCase();
+
   if (!GENDER.includes(gender)) {
     return { success: false, error: "Invalid gender" };
   }
@@ -52,7 +54,7 @@ export const signUp = async (params: AuthCredentials) => {
   const existingUser = await db
     .select()
     .from(users)
-    .where(eq(users.email, email))
+    .where(eq(users.email, emailNormalized))
     .limit(1);
 
   if (existingUser.length > 0) {
@@ -64,7 +66,7 @@ export const signUp = async (params: AuthCredentials) => {
   try {
     await db.insert(users).values({
       userName,
-      email,
+      email: emailNormalized,
       password: hashedPassword,
       firstName,
       lastName,
@@ -75,7 +77,7 @@ export const signUp = async (params: AuthCredentials) => {
     await signIn('credentials', {
       email,
       password,
-      redirect: false,
+      redire: false,
     });
 
     return { success: true };
