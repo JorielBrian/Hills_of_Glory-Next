@@ -5,6 +5,7 @@ import { toast } from "sonner"
 import * as z from "zod"
 
 import { signInSchema } from "@/lib/validations"
+import { signInWithCredentials } from "@/lib/actions/auth";
 
 const schema = signInSchema;
 
@@ -33,7 +34,7 @@ const SignIn = () => {
         email: "",
         password: "",
       }}
-      // onSubmit={() => {}}
+      onSubmit={signInWithCredentials}
     />
   )
 }

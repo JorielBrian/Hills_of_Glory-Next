@@ -1,6 +1,6 @@
 import { GENDER } from "./constants/enums/member/gender";
 
-interface Member {
+export interface Member {
     id: number,
     first_name: string,
     middle_name: string,

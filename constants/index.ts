@@ -1,3 +1,5 @@
+import { Member } from "@/types";
+
 enum Gender {
     MALE = 'Male',
     FEMALE = 'Female'
@@ -107,6 +109,7 @@ interface FIELDNAME_PROP {
     firstName: string,
     middleName: string,
     lastName: string,
+    gender: string,
     email: string,
     password: string
 }
@@ -116,6 +119,7 @@ export const FIELD_NAMES: FIELDNAME_PROP = {
     firstName: "First Name",
     middleName: "Middle Name",
     lastName: "Last Name",
+    gender: "Gender",
     email: "Email",
     password: "Password",
 }
@@ -125,6 +129,7 @@ export const FIELD_TYPES = {
     firstName: "text",
     middleName: "text",
     lastName: "text",
+    gender: "text",
     email: "email",
     password: "password",
 }

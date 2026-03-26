@@ -8,54 +8,79 @@ import { signIn } from "@/auth";
 import { GENDER } from "@/constants/enums/member/gender";
 import type { AuthCredentials } from "@/types";
 
-export const signInWithCredentials = async ( params: Pick<AuthCredentials, 'email' | 'password'>) => {
-    const { email, password } = params;
-    try {
-        const result = await signIn('credentials', {
-            email,
-            password,
-            redirect: false
-        });
+// SIGN IN
+export const signInWithCredentials = async (
+  params: Pick<AuthCredentials, 'email' | 'password'>
+) => {
+  const { email, password } = params;
 
-        if (result?.error){
-            return { success: false, error: result.error};
-        }
-    } catch (error) {
-        console.log(error, "Sign in error");
-        return { success: false, error: "Sign in error"}
-    }
-}
+  if (!email || !password) {
+    return { success: false, error: "Missing credentials" };
+  }
 
-export const signUp = async(params: AuthCredentials) => {
-    const { userName, email, password, firstName, lastName, gender } = params;
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+    
+    return { success: true };
+  } catch (error) {
+    console.log(error, "Sign in error");
 
-    const existingUser = await db.
-        select()
-        .from(users)
-        .where(eq(users.email, email))
-        .limit(1);
+    return {
+      success: false,
+      error: "Invalid email or password",
+    };
+  }
+};
 
-    if( existingUser.length > 0 ) {
-        return {success: false, error: "User already exists"};
-    }
+// SIGN UP
+export const signUp = async (params: AuthCredentials) => {
+  const { userName, email, password, firstName, lastName, gender } = params;
 
-    const hashedPassword = await hash(password, 10);
+  // ✅ validation
+  if (!email || !password || !userName) {
+    return { success: false, error: "Missing required fields" };
+  }
 
-    try {
-        await db.insert(users).values({
-            userName,
-            email,
-            password: hashedPassword,
-            firstName,
-            lastName,
-            gender: gender as typeof GENDER[number]
-        })
+  if (!GENDER.includes(gender)) {
+    return { success: false, error: "Invalid gender" };
+  }
 
-        // await  signInWithCredentials({ email, password})
+  const existingUser = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, email))
+    .limit(1);
 
-        return { success: true};
-    } catch (error) {
-        console.log(error);
-        return { success: false, error: "Signup error"}
-    }
-}
+  if (existingUser.length > 0) {
+    return { success: false, error: "User already exists" };
+  }
+
+  const hashedPassword = await hash(password, 10);
+
+  try {
+    await db.insert(users).values({
+      userName,
+      email,
+      password: hashedPassword,
+      firstName,
+      lastName,
+      gender: gender as typeof GENDER[number],
+    });
+
+    // ✅ immediately sign in AND redirect
+    await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.log(error);
+    return { success: false, error: "Signup error" };
+  }
+};

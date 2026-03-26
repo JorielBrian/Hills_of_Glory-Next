@@ -24,11 +24,13 @@ import {
 import { Input } from "@/components/ui/input"
 
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants/index";
+// import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation"
 
 interface Props {
   schema: z.ZodTypeAny;
   defaultValues: any;
-  // onSubmit: (data: any) => Promise<{ success: boolean; error?: string }>;
+  onSubmit: (data: any) => Promise<{ success: boolean; error?: string }>;
   type: "SIGN_IN" | "SIGN_UP";
 }
 
@@ -36,15 +38,34 @@ const AuthForm = ({
   type,
   schema,
   defaultValues,
-  // onSubmit
+  onSubmit
 }: Props) => {
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: defaultValues,
   });
 
-  const handleSubmit = async ({data}: any) => { };
+  const handleSubmit = async (data: any) => {
+    
+    console.log("SUBMITTING", data);
+
+    const result = await onSubmit(data);
+
+    console.log("RESULT", result);
+    
+    if(result.success){
+      // toast({
+      //   title: 'Success',
+      //   description: isSignIn
+      //     ? "You have successfully signed in."
+      //     : "You have successfully signed up"
+      // });
+
+      router.push('/dashboard')
+    }
+   };
 
   const isSignIn = type ==='SIGN_IN';
 
@@ -57,7 +78,7 @@ const AuthForm = ({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={form.handleSubmit(handleSubmit)}>
+        <form id="signInForm" onSubmit={form.handleSubmit(handleSubmit)}>
           <FieldGroup>
             {Object.keys(defaultValues).map((field) => (
               <Controller
