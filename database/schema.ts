@@ -38,7 +38,7 @@ export const users = pgTable("users", {
     facebook: varchar('facebook', { length: 255 }).unique(),
 
     // PERSONAL
-    occupation: occupationEnum('occupation').default(OCCUPATION[5]).notNull(),                                     // Occupation Enum
+    occupation: occupationEnum('occupation').default(OCCUPATION[5]).notNull(),              // Occupation Enum
 
     // CHURCH
     invitedBy: uuid('invited_by_id').references((): AnyPgColumn => users.id),               //  Invited by another user
@@ -80,7 +80,7 @@ export const lifegroupMembers = pgTable("lifegroup_members", {
   joinedAt: timestamp('joined_at').defaultNow().notNull(),
 });
 
-export const usersRelations = relations(users, ({ one, many }) => ({
+export const usersRelations = relations(users, ({ one }) => ({
   invitedByUser: one(users, {
     fields: [users.invitedBy],
     references: [users.id],

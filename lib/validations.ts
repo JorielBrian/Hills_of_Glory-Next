@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import { GENDER } from '@/constants/enums/member/gender';
 
 export const signUpSchema = z.object({
   userName: z
@@ -18,8 +19,7 @@ export const signUpSchema = z.object({
     .min(5, 'Last name must be at least 5 characters.')
     .max(32, 'Last name must be at most 32 characters.'),
   gender: z
-    .string()
-    .min(4, 'Gender must be at least 4 characters.'),
+    .enum(GENDER, { required_error: 'Please select a gender.' }),
   email: z
     .string()
     .email(),

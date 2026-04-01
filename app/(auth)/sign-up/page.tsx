@@ -14,7 +14,7 @@ const SignUp = () => {
         firstName: "",
         middleName: "",
         lastName: "",
-        gender:"",
+        gender: "Male",
         email: "",
         password: "",
       }}
