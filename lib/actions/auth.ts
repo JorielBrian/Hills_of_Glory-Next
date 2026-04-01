@@ -19,11 +19,18 @@ export const signInWithCredentials = async (
   }
 
   try {
-    await signIn('credentials', {
+    const result = await signIn('credentials', {
       email,
       password,
       redirect: false,
     });
+
+    if (!result || result.error) {
+      return {
+        success: false,
+        error: "Invalid email or password",
+      };
+    }
 
     return { success: true };
   } catch (error) {
@@ -77,7 +84,7 @@ export const signUp = async (params: AuthCredentials) => {
     await signIn('credentials', {
       email,
       password,
-      redire: false,
+      redirect: false,
     });
 
     return { success: true };
