@@ -7,7 +7,7 @@ const ServiceEvent = () => {
                 <h1 className="p-4 text-5xl md:text-6xl font-bold text-emerald-800 shadow-2xl">
                     Our Services
                 </h1>
-                <div className="grid lg:grid-cols-3 gap-4 w-full h-fit p-2 bg-black">
+                <div className="grid lg:grid-cols-3 gap-4 w-full h-fit p-2 bg-black rounded-lg">
                     <Service 
                         title="Protege"
                         time="Thursdays | 6:00 PM"
