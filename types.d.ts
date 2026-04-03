@@ -32,6 +32,7 @@ export interface AuthCredentials {
     email: string;
     password: string;
     firstName: string;
+    middleName?: string;
     lastName: string;
     gender: typeof GENDER[number];
 }

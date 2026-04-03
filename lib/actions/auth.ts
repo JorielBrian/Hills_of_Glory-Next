@@ -47,17 +47,19 @@ export const signInWithCredentials = async (
 export const signUp = async (params: AuthCredentials) => {
   const { userName, email, password, firstName, lastName, gender } = params;
 
-  // ✅ validation
-  if (!email || !password || !userName) {
+  // Validate required fields
+  if (!email || !password || !userName || !firstName || !lastName || !gender) {
     return { success: false, error: "Missing required fields" };
   }
 
-  const emailNormalized = email.toLowerCase();
+  const emailNormalized = email.toLowerCase().trim();
+  const userNameNormalized = userName.trim();
 
   if (!GENDER.includes(gender)) {
     return { success: false, error: "Invalid gender" };
   }
 
+  // Check if user already exists
   const existingUser = await db
     .select()
     .from(users)
@@ -65,31 +67,48 @@ export const signUp = async (params: AuthCredentials) => {
     .limit(1);
 
   if (existingUser.length > 0) {
-    return { success: false, error: "User already exists" };
+    return { success: false, error: "User with this email already exists" };
+  }
+
+  // Check if username already exists
+  const existingUserName = await db
+    .select()
+    .from(users)
+    .where(eq(users.userName, userNameNormalized))
+    .limit(1);
+
+  if (existingUserName.length > 0) {
+    return { success: false, error: "Username already taken" };
   }
 
   const hashedPassword = await hash(password, 10);
 
   try {
     await db.insert(users).values({
-      userName,
+      userName: userNameNormalized,
       email: emailNormalized,
       password: hashedPassword,
-      firstName,
-      lastName,
+      firstName: firstName.trim(),
+      middleName: params.middleName?.trim() || null,
+      lastName: lastName.trim(),
       gender: gender as typeof GENDER[number],
     });
 
-    // ✅ immediately sign in AND redirect
-    await signIn('credentials', {
-      email,
+    // Sign in the user immediately after successful registration
+    const signInResult = await signIn('credentials', {
+      email: emailNormalized,
       password,
       redirect: false,
     });
 
+    if (!signInResult || signInResult.error) {
+      console.error('Auto sign-in failed:', signInResult?.error);
+      return { success: false, error: "Account created but sign-in failed. Please try signing in manually." };
+    }
+
     return { success: true };
   } catch (error) {
-    console.log(error);
-    return { success: false, error: "Signup error" };
+    console.error('Signup error:', error);
+    return { success: false, error: "Failed to create account. Please try again." };
   }
 };
