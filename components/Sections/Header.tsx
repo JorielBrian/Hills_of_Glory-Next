@@ -7,6 +7,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
+import Image from "next/image";
 import Link from "next/link"
 
 const Header = () => {
@@ -54,7 +55,7 @@ const Header = () => {
   return (
     <header>
         <Link className="text_logo flex text-xl 2xl:text-3xl" href="/">
-          <img src="/hog_logo.png" alt="logo" className="size-10 2xl:size-15" />
+          <Image width={50} height={50} src="/hog_logo.png" alt="logo" className="size-10 2xl:size-15" />
           <h1 className="text-[#fdc53a] content-center px-1">Hills of Glory</h1><h1 className="content-center px-1">Mabalacat</h1>
         </Link>
 
