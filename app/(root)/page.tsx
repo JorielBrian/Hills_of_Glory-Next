@@ -1,10 +1,11 @@
+import Hero from "@/components/Sections/Hero"
+import Services from "@/components/Sections/Services"
+
 const Home = () => {
   return (
     <main className="h-full">
-        <section className="w-full">
-            <h1 className="text-xl 2xl:text-6xl p-8 2xl:w-1/2">TO HONOR GOD AND TO RAISE COMMITTED DISCIPLES</h1>
-            <h2 className="h-fit text:lg 2xl:text-4xl text-[#fdc53a] px-10">Who are able to discple multitudes</h2>
-        </section>
+        <Hero />
+        <Services />
         <section className="flex flex-col md:flex-row mt-20 2xl:w-1/2 2xl:p-20 2xl:mt-50">
             <div>
                 <h3 className="py-3 text-md text-white font-[Century Gothic] font-bold 2xl:text-3xl">Announcements</h3>

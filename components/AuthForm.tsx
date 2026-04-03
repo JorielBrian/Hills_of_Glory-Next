@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button"
 
 import { useRouter } from "next/navigation";
 import Link from "next/link"
+import { useState } from "react";
 
 interface Props<T extends ZodTypeAny> {
   schema: T;
@@ -41,6 +42,8 @@ const AuthForm = <T extends ZodTypeAny>({
   onSubmit
 }: Props<T>) => {
   const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<T>>({
     resolver: zodResolver(schema),
@@ -48,19 +51,26 @@ const AuthForm = <T extends ZodTypeAny>({
   });
 
   const handleSubmit = async (data: z.infer<T>) => {
-    
-    console.log("SUBMITTING", data);
+    setIsLoading(true);
+    setError(null);
 
-    const result = await onSubmit(data);
+    try {
+      const result = await onSubmit(data);
 
-    console.log("RESULT", result);
-
-    if(result.success){
-      router.push('/dashboard');
+      if (result.success) {
+        router.push('/dashboard');
+      } else {
+        setError(result.error || 'An error occurred');
+      }
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
-   };
+  };
 
-  const isSignIn = type ==='SIGN_IN';
+  const isSignIn = type === 'SIGN_IN';
 
   return (
     <Card className="w-full sm:max-w-md bg-transparent text-white">
@@ -97,12 +107,17 @@ const AuthForm = <T extends ZodTypeAny>({
                 )}
               />
             ))}
+            {error && (
+              <div className="text-red-500 text-sm text-center bg-red-100 p-2 rounded">
+                {error}
+              </div>
+            )}
             <Field className="grid grid-cols-2">
               <Button type="button" variant="outline" onClick={() => form.reset()} className="text-black">
                 Clear
               </Button>
-              <Button type="submit" form="signInForm" className="bg-emerald-800">
-                {isSignIn ? 'Log In' : 'Sign Up'}
+              <Button type="submit" form="signInForm" className="bg-emerald-800" disabled={isLoading}>
+                {isLoading ? 'Please wait...' : (isSignIn ? 'Log In' : 'Sign Up')}
               </Button>
             </Field>
           </FieldGroup>
