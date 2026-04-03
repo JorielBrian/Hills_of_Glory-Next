@@ -4,7 +4,7 @@ const ServiceEvent = () => {
   return (
     <section>
         <div className="flex p-4 bg-white/80 h-fit py-15 items-center -skew-y-6 2xl:py-30">
-            <div className="skew-y-6">
+            <div className="w-full skew-y-6">
                 <h1 className="p-4 text-5xl md:text-6xl font-bold text-emerald-800 shadow-2xl">
                     Our Services
                 </h1>
