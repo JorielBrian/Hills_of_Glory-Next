@@ -1,11 +1,11 @@
 import Hero from "@/components/Sections/Hero"
-import Services from "@/components/Sections/ServiceEvent"
+import ServiceEvent from "@/components/Sections/ServiceEvent"
 
 const Home = () => {
   return (
     <main className="h-full">
         <Hero />
-        <Services />
+        <ServiceEvent />
     </main>
   )
 }
