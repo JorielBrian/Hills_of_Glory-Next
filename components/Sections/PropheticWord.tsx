@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfeticWord = () => {
+const PropheticWord = () => {
   return (
     <section className='flex flex-col gap-4 my-30 h-150 p-10 bg-[url(/divine_space_bg.png)] bg-cover bg-center text-green-900 text-center font-serif place-content-center'>
         <p className='text-5xl'>
@@ -16,4 +16,4 @@ const ProfeticWord = () => {
   )
 }
 
-export default ProfeticWord
+export default PropheticWord

@@ -1,12 +1,12 @@
 import Hero from "@/components/Sections/Hero"
-import ProfeticWord from "@/components/Sections/ProfeticWord"
+import PropheticWord from "@/components/Sections/PropheticWord"
 import ServiceEvent from "@/components/Sections/ServiceEvent"
 
 const Home = () => {
   return (
     <main className="h-full">
         <Hero />
-        <ProfeticWord />
+        <PropheticWord />
         <ServiceEvent />
     </main>
   )
