@@ -113,7 +113,7 @@ const AuthForm = <T extends ZodTypeAny>({
               </div>
             )}
             <Field className="grid grid-cols-2">
-              <Button type="button" variant="outline" onClick={() => form.reset()} className="text-black">
+              <Button type="button" variant="outline" onClick={() => form.reset()} className="text-black bg-gray-300/80" disabled={isLoading}>
                 Clear
               </Button>
               <Button type="submit" form="signInForm" className="bg-emerald-800" disabled={isLoading}>
