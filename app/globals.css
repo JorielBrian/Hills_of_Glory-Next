@@ -1,8 +1,6 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -115,9 +113,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
+}*/
 
-layer base {
+/* @layer base {
   * {
     @apply border-border outline-ring/50;
   }
@@ -127,7 +125,7 @@ layer base {
   html {
     @apply font-sans;
   }
-}
+} */
 
 body {
   @apply text-white bg-cover bg-center bg-fixed;
@@ -139,7 +137,7 @@ aside {
 }
 
 .aside_button {
-  @apply flex p-5 text-white justify-between gap-2 rounded-lg hover:bg-gray-100/60 hover:no-underline;
+  @apply flex justify-between gap-2 p-5 text-white rounded-lg hover:bg-gray-100/60 hover:no-underline;
 }
 
 .aside_button_active {
@@ -152,13 +150,11 @@ aside {
 
 /* HEADER */
 header {
-  @apply flex flex-col w-full h-fit px-4 py-13 text-white items-center justify-between
-    lg:flex-row
-    2xl:px-10;
+  @apply flex flex-col items-center justify-between w-full h-fit px-4 py-12 text-white lg:flex-row 2xl:px-10;
 }
 
 .text_logo {
-  @apply font-bold text-shadow-lg;
+  @apply font-bold;
 }
 
 main {
@@ -171,9 +167,7 @@ footer {
 
 /* HOME */
 .home_nav_button {
-  @apply bg-transparent text-white text-sm font-bold 
-    md:text-lg
-    hover:bg-gray-100/40 hover:no-underline;
+  @apply bg-transparent text-sm font-bold text-white hover:bg-gray-100/40 hover:no-underline md:text-lg;
 }
 
 .home_dropdown_item {
@@ -182,6 +176,5 @@ footer {
 
 /* DASHBOARD */
 .dashboard_main {
-  @apply flex flex-1 flex-col w-full h-screen p-10 gap-4 rounded-xl text-black
-    *:rounded-lg;
+  @apply flex flex-1 flex-col w-full h-screen gap-4 p-10 text-black rounded-xl *:rounded-lg;
 }
