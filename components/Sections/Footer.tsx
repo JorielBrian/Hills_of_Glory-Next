@@ -13,15 +13,6 @@ const Footer = () => {
       ],
     },
     {
-      title: "Ministries",
-      links: [
-        { label: "Administration", href: "/ministry/administration" },
-        { label: "Creative", href: "/ministry/creative" },
-        { label: "Education", href: "/ministry/education" },
-        { label: "Music & Arts", href: "/ministry/music-and-arts" },
-      ],
-    },
-    {
       title: "Support",
       links: [
         { label: "Contact Us", href: "/" },
@@ -29,10 +20,17 @@ const Footer = () => {
         { label: "Sign Up", href: "/sign-up" },
       ],
     },
+    {
+        title: "Connect",
+        links: [
+            { label: "Facebook", href: "https://www.facebook.com/hillsofglorymabalacat" },
+            { label: "Instagram", href: "https://www.instagram.com/hillsofglorymabalacat/" },
+        ]
+    }
   ];
 
   return (
-    <footer className="h-80! border-t border-white/10 bg-[#030303]/70 text-slate-200">
+    <footer className="h-fit! border-t border-white/10 bg-[#030303]/70 text-slate-200">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-12 sm:px-10 lg:px-12">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-xl">
