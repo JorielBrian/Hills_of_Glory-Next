@@ -7,6 +7,7 @@ import { eq } from "drizzle-orm";
 import { signIn } from "@/auth";
 import { GENDER } from "@/constants/enums/member/gender";
 import type { AuthCredentials } from "@/types";
+import { compare } from "bcryptjs";
 
 // SIGN IN
 export const signInWithCredentials = async (
@@ -18,27 +19,39 @@ export const signInWithCredentials = async (
     return { success: false, error: "Missing credentials" };
   }
 
+  const emailNormalized = email.toLowerCase().trim();
+
   try {
-    const result = await signIn('credentials', {
-      email,
+    const user = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, emailNormalized))
+      .limit(1);
+
+    if (user.length === 0) {
+      return { success: false, error: "Invalid email or password" };
+    }
+
+    const isValid = await compare(password, user[0].password);
+
+    if (!isValid) {
+      return { success: false, error: "Invalid email or password" };
+    }
+
+    // ✅ Only sign in AFTER validation passes
+    await signIn("credentials", {
+      email: emailNormalized,
       password,
       redirect: false,
     });
 
-    if (!result || result.error) {
-      return {
-        success: false,
-        error: "Invalid email or password",
-      };
-    }
-
     return { success: true };
-  } catch (error) {
-    console.log(error, "Sign in error");
 
+  } catch (error) {
+    console.error("Sign in error:", error);
     return {
       success: false,
-      error: "Invalid email or password",
+      error: "Something went wrong",
     };
   }
 };
@@ -95,15 +108,18 @@ export const signUp = async (params: AuthCredentials) => {
     });
 
     // Sign in the user immediately after successful registration
-    const signInResult = await signIn('credentials', {
-      email: emailNormalized,
-      password,
-      redirect: false,
-    });
-
-    if (!signInResult || signInResult.error) {
-      console.error('Auto sign-in failed:', signInResult?.error);
-      return { success: false, error: "Account created but sign-in failed. Please try signing in manually." };
+    try {
+      await signIn('credentials', {
+        email: emailNormalized,
+        password,
+        redirect: false,
+      });
+    } catch (error) {
+      console.error('Auto sign-in failed:', error);
+      return {
+        success: false,
+        error: "Account created but sign-in failed. Please try signing in manually."
+      };
     }
 
     return { success: true };
