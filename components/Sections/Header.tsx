@@ -1,3 +1,7 @@
+'use client';
+import { useEffect, useState } from "react";
+import { motion } from "motion/react"
+
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -51,9 +55,39 @@ const Header = () => {
     }
   ];
 
+  const [scroll, setScroll] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState('up');
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+      const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Detect scroll direction
+      if (currentScrollY > lastScrollY) {
+          setScrollDirection('down');
+      } else {
+          setScrollDirection('up');
+      }
+      
+      // For sticky effect
+      setScroll(currentScrollY > 50);
+      
+      setLastScrollY(currentScrollY);
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <header>
+    <motion.header
+      animate={{ 
+          opacity: scrollDirection === 'up' ? 1 : 0,
+          y: scrollDirection === 'down' ? -100 : 0
+      }}
+      className={scroll ? "flex sticky top-0 py-5! z-50 w-full justify-center bg-black/50" : "flex w-full py-10 justify-center"}
+    >
         <Link className="text_logo flex text-xl 2xl:text-3xl" href="/">
           <Image width={50} height={50} src="/hog_logo.png" alt="logo" className="size-10 2xl:size-15" />
           <h1 className="text-[#fdc53a] content-center px-1">Hills of Glory</h1><h1 className="content-center px-1">Mabalacat</h1>
@@ -106,7 +140,7 @@ const Header = () => {
           {/* <Link href="/dashboard">Dashboard</Link> */}
           {/* <Link href="/sign-in">Sign In</Link> */}
         </Button>
-    </header>
+    </motion.header>
   )
 }
 
