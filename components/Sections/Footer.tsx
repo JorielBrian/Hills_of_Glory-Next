@@ -8,7 +8,7 @@ const Footer = () => {
       links: [
         { label: "Home", href: "/" },
         { label: "Ministries", href: "/" },
-        { label: "Events", href: "/" },
+        { label: "Services", href: "/" },
         { label: "About", href: "/" },
       ],
     },
@@ -27,13 +27,12 @@ const Footer = () => {
         { label: "Contact Us", href: "/" },
         { label: "Sign In", href: "/sign-in" },
         { label: "Sign Up", href: "/sign-up" },
-        { label: "Dashboard", href: "/dashboard" },
       ],
     },
   ];
 
   return (
-    <footer className="h-screen border-t border-white/10 bg-[#030303] text-slate-200">
+    <footer className="h-80! border-t border-white/10 bg-[#030303]/70 text-slate-200">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-12 sm:px-10 lg:px-12">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-xl">
