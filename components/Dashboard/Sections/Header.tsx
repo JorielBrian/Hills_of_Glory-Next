@@ -2,10 +2,12 @@ import { Avatar } from "@/components/ui/avatar";
 import { IoPersonCircle } from "react-icons/io5";
 import Image from "next/image";
 import Link from "next/link";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const Header = () => {
   return (
     <header className="bg-[#b8bd9e]">
+        <SidebarTrigger className="absolute top-0 -ml-8"/>
         <Link href="/">
             <div className="text_logo flex">
                 <Image 

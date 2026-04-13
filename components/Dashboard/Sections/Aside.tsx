@@ -6,13 +6,15 @@ import { ImHome } from "react-icons/im"; //<ImHome />
 import { FaPeopleRoof } from "react-icons/fa6"; //<FaPeopleRoof />
 import { MdGroups } from "react-icons/md"; //<MdGroups />
 import { Button } from "@/components/ui/button";
+import { Sidebar, SidebarContent, SidebarHeader } from "@/components/ui/sidebar";
 
 const Aside = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-emerald-950">
-      <nav className="flex-1 flex flex-col p-2 space-y-2">
+    <Sidebar className="bg-emerald-950">
+      <SidebarHeader />
+      <SidebarContent>
         <Button 
           variant="link" 
           className={cn("aside_button", { "aside_button_active": pathname === "/dashboard" })}
@@ -49,8 +51,8 @@ const Aside = () => {
             </div>
           </a>
         </Button>
-      </nav>
-    </aside>
+      </SidebarContent>
+    </Sidebar>
   )
 }
 

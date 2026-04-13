@@ -3,6 +3,7 @@ import Aside from '@/components/Dashboard/Sections/Aside'
 import Footer from '@/components/Dashboard/Sections/Footer'
 import Header from '@/components/Dashboard/Sections/Header'
 import type { Metadata } from "next";
+import { SidebarProvider } from '@/components/ui/sidebar';
 
 export const metadata: Metadata = {
   title: "Hills of Glory | Dashboard",
@@ -12,12 +13,14 @@ export const metadata: Metadata = {
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="flex bg-[#f1f1f1]">
-      <Aside />
-      <div className='w-full bg-black/60'>
-        <Header />
-        {children}
-        <Footer />
-      </div>
+      <SidebarProvider>
+        <Aside />
+        <div className='w-full bg-black/60'>
+          <Header />
+          {children}
+          <Footer />
+        </div>
+      </SidebarProvider>
     </main>
   )
 }

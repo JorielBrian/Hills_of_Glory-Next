@@ -104,7 +104,7 @@ const Header = () => {
           asChild
         >
           {/* <Link href="/dashboard">Dashboard</Link> */}
-          <Link href="/sign-in">Sign In</Link>
+          {/* <Link href="/sign-in">Sign In</Link> */}
         </Button>
     </header>
   )
