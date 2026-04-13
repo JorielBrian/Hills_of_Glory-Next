@@ -1,3 +1,4 @@
+import Footer from "@/components/Sections/Footer"
 import Hero from "@/components/Sections/Hero"
 import PropheticWord from "@/components/Sections/PropheticWord"
 import ServiceEvent from "@/components/Sections/ServiceEvent"
@@ -8,6 +9,7 @@ const Home = () => {
         <Hero />
         <PropheticWord />
         <ServiceEvent />
+        <Footer />
     </main>
   )
 }
