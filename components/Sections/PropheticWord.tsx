@@ -1,5 +1,3 @@
-import React from 'react'
-
 const PropheticWord = () => {
   return (
     <section className='flex flex-col gap-4 my-30 py-2 md:py-5 xl:py-15 2xl:py-20 h-fit  bg-[url(/divine_space_bg.png)] bg-cover bg-center text-green-900 text-center font-serif place-content-center'>
