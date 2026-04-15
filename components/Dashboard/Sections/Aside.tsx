@@ -13,7 +13,7 @@ const Aside = () => {
   const pathname = usePathname();
 
   return (
-    <Sidebar className="bg-[#b8bd9e]">
+    <Sidebar className="bg-emerald-950">
       <SidebarHeader />
       <SidebarContent>
         <Button 
