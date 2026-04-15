@@ -1,5 +1,3 @@
-import { Avatar } from "@/components/ui/avatar";
-import { IoPersonCircle } from "react-icons/io5";
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -21,9 +19,6 @@ const Header = () => {
                 <h1 className="px-1 text-lg 2xl:text-4xl content-center">Mabalacat</h1>
             </div>
         </Link>
-        <Avatar className="size-15 text-gray-500">
-            <IoPersonCircle className="size-full"/>
-        </Avatar>
     </header>
   )
 }

@@ -6,7 +6,8 @@ import { ImHome } from "react-icons/im"; //<ImHome />
 import { FaPeopleRoof } from "react-icons/fa6"; //<FaPeopleRoof />
 import { MdGroups } from "react-icons/md"; //<MdGroups />
 import { Button } from "@/components/ui/button";
-import { Sidebar, SidebarContent, SidebarHeader } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
+import ProfileAvatar from "../ProfileAvatar";
 
 const Aside = () => {
   const pathname = usePathname();
@@ -52,6 +53,9 @@ const Aside = () => {
           </a>
         </Button>
       </SidebarContent>
+      <SidebarFooter>
+        <ProfileAvatar />
+      </SidebarFooter>
     </Sidebar>
   )
 }
