@@ -1,4 +1,5 @@
 // import members from "@/app/api/db"
+import Image from "next/image";
 import { sampleMembers } from "@/constants";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,8 +17,11 @@ const MembersSection = () => {
             {sampleMembers.map((member) => (
               <Card key={member.id} className="relative w-full p-5 shadow shadow-stone-400">
                 {member.member_photo ? (
-                    <img
+                    <Image
                       src={member.member_photo}
+                      alt={`${member.first_name} ${member.last_name} profile picture`}
+                      width={64}
+                      height={64}
                       className="h-16 w-16 rounded-full object-cover"
                     />
                   ) : (

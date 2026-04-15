@@ -38,7 +38,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 return {
                     id: user[0].id.toString(),
                     email: user[0].email,
-                    name: user[0].firstName + " " + user[0].lastName
+                    name: user[0].firstName + " " + user[0].lastName,
+                    userType: user[0].userType,
+                    firstName: user[0].firstName,
+                    lastName: user[0].lastName,
+                    userName: user[0].userName,
                 } as User;
             }
         })
@@ -51,6 +55,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if(user){
                 token.id = user.id;
                 token.name = user.name;
+                token.email = user.email;
+                token.userType = user.userType;
+                token.firstName = user.firstName;
+                token.lastName = user.lastName;
+                token.userName = user.userName;
             }
 
             return token;
@@ -59,6 +68,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if(session.user){
                 session.user.id = token.id as string;
                 session.user.name = token.name as string;
+                session.user.email = token.email as string;
+                session.user.userType = token.userType as string;
+                session.user.firstName = token.firstName as string;
+                session.user.lastName = token.lastName as string;
+                session.user.userName = token.userName as string;
             }
 
             return session;

@@ -36,3 +36,33 @@ export interface AuthCredentials {
     lastName: string;
     gender: typeof GENDER[number];
 }
+
+declare module "next-auth" {
+    interface User {
+        userType?: string;
+        firstName?: string;
+        lastName?: string;
+        userName?: string;
+    }
+
+    interface Session {
+        user: {
+            id: string;
+            name: string;
+            email: string;
+            userType?: string;
+            firstName?: string;
+            lastName?: string;
+            userName?: string;
+        }
+    }
+}
+
+declare module "next-auth/jwt" {
+    interface JWT {
+        userType?: string;
+        firstName?: string;
+        lastName?: string;
+        userName?: string;
+    }
+}

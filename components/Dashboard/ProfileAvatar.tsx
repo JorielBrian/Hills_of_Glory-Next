@@ -1,12 +1,14 @@
 "use client"
 
-import { 
+import {
   IoPersonCircle,
   IoNotifications,
   IoLogOutOutline
 } from "react-icons/io5";
 
 import { BsThreeDotsVertical } from "react-icons/bs";
+
+import { useSession, signOut } from "next-auth/react";
 
 import {
   Avatar,
@@ -31,13 +33,40 @@ import {
 
 const NavUser = () => {
   const { isMobile } = useSidebar()
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return (
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton size="lg" className="opacity-50">
+            <Avatar className="h-8 w-8 rounded-lg">
+              <AvatarFallback className="rounded-lg">...</AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-medium">Loading...</span>
+            </div>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    );
+  }
+
+  if (!session?.user) {
+    return null;
+  }
 
   const user = {
-    name: "John Doe",
-    email: "john.doe@example.com",
-    avatar: "/avatars/john-doe.jpg"
-  
+    name: session.user.name || "User",
+    email: session.user.email || "",
+    avatar: "", // You can add avatar URL from session if available
+    initials: session.user.name?.split(' ').map(n => n[0]).join('').toUpperCase() || "U"
   }
+
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: '/sign-in' });
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -47,9 +76,9 @@ const NavUser = () => {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
+              <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg">{user.initials}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
@@ -70,7 +99,7 @@ const NavUser = () => {
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">{user.initials}</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
@@ -92,7 +121,7 @@ const NavUser = () => {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut}>
               <IoLogOutOutline />
               Log out
             </DropdownMenuItem>
