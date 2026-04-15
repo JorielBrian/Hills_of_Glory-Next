@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 type AccountFormData = z.infer<typeof accountSchema>;
 
@@ -35,6 +36,7 @@ interface AccountFormProps {
 
 const AccountForm = ({ userData }: AccountFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -65,8 +67,10 @@ const AccountForm = ({ userData }: AccountFormProps) => {
       });
 
       if (result.success) {
-        toast.success("Account updated successfully!");
-      } else {
+        toast.success("Account updated successfully!");        // Redirect back to account page after successful update
+        setTimeout(() => {
+          router.push("/dashboard/account");
+        }, 1000);      } else {
         toast.error(result.error || "Failed to update account");
       }
     } catch (error) {
