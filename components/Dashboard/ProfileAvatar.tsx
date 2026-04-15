@@ -113,7 +113,9 @@ const NavUser = () => {
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <IoPersonCircle />
-                Account
+                <a href="/dashboard/account">
+                  Account
+                </a>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <IoNotifications />

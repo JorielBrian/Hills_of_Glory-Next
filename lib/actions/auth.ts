@@ -3,9 +3,12 @@
 import { db } from "@/database/db";
 import { users } from "@/database/schema";
 import { hash } from "bcryptjs";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { signIn } from "@/auth";
 import { GENDER } from "@/constants/enums/member/gender";
+import { OCCUPATION } from "@/constants/enums/member/occupation";
+import { MEMBER_TYPE } from "@/constants/enums/member/member_type";
+import { EVENT } from "@/constants/enums/event/event";
 import type { AuthCredentials } from "@/types";
 import { compare } from "bcryptjs";
 
@@ -126,5 +129,56 @@ export const signUp = async (params: AuthCredentials) => {
   } catch (error) {
     console.error('Signup error:', error);
     return { success: false, error: "Failed to create account. Please try again." };
+  }
+};
+
+// UPDATE ACCOUNT
+export const updateAccount = async (params: {
+  userId: string;
+  birthDate?: string;
+  contactNumber?: string;
+  address?: string;
+  facebook?: string;
+  occupation: string;
+  firstDateAttended?: string;
+  firstEvent?: string;
+  memberType: string;
+}) => {
+  const {
+    userId,
+    birthDate,
+    contactNumber,
+    address,
+    facebook,
+    occupation,
+    firstDateAttended,
+    firstEvent,
+    memberType
+  } = params;
+
+  // Validate required fields
+  if (!userId || !occupation || !memberType) {
+    return { success: false, error: "Missing required fields" };
+  }
+
+  try {
+    await db.update(users)
+      .set({
+        birthDate: birthDate && birthDate.trim() ? sql`${new Date(birthDate)}` : null,
+        contactNumber: contactNumber && contactNumber.trim() ? contactNumber : null,
+        address: address && address.trim() ? address : null,
+        facebook: facebook && facebook.trim() ? facebook : null,
+        occupation: occupation as typeof OCCUPATION[number],
+        firstDateAttended: firstDateAttended && firstDateAttended.trim() ? sql`${new Date(firstDateAttended)}` : null,
+        firstEvent: firstEvent && firstEvent.trim() ? (firstEvent as typeof EVENT[number]) : null,
+        memberType: memberType as typeof MEMBER_TYPE[number],
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, userId));
+
+    return { success: true };
+  } catch (error) {
+    console.error('Update account error:', error);
+    return { success: false, error: "Failed to update account. Please try again." };
   }
 };

@@ -4,6 +4,7 @@ import "@/app/globals.css";
 
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default async function RootLayout({
       <SessionProvider session={session}>
         <body className="h-full bg-black">
           {children}
+          <Toaster />
         </body>
       </SessionProvider>
     </html>

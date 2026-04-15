@@ -1,5 +1,8 @@
 import * as z from 'zod';
 import { GENDER } from '@/constants/enums/member/gender';
+import { OCCUPATION } from '@/constants/enums/member/occupation';
+import { MEMBER_TYPE } from '@/constants/enums/member/member_type';
+import { EVENT } from '@/constants/enums/event/event';
 
 export const signUpSchema = z.object({
   userName: z
@@ -42,4 +45,42 @@ export const signInSchema = z.object ({
   password: z
     .string()
     .min(1, 'Password is required.')
+})
+
+export const accountSchema = z.object({
+  birthDate: z
+    .string()
+    .optional()
+    .refine((val) => !val || !isNaN(Date.parse(val)), {
+      message: 'Please enter a valid date.',
+    }),
+  contactNumber: z
+    .string()
+    .max(20, 'Contact number must be at most 20 characters.')
+    .regex(/^[\d\s\-\+\(\)]*$/, 'Contact number can only contain numbers, spaces, dashes, plus signs, and parentheses.')
+    .optional()
+    .or(z.literal('')),
+  address: z
+    .string()
+    .max(500, 'Address must be at most 500 characters.')
+    .optional()
+    .or(z.literal('')),
+  facebook: z
+    .string()
+    .max(255, 'Facebook username must be at most 255 characters.')
+    .optional()
+    .or(z.literal('')),
+  occupation: z
+    .enum(OCCUPATION, { required_error: 'Please select an occupation.' }),
+  firstDateAttended: z
+    .string()
+    .optional()
+    .refine((val) => !val || !isNaN(Date.parse(val)), {
+      message: 'Please enter a valid date.',
+    }),
+  firstEvent: z
+    .enum(EVENT, { required_error: 'Please select the first event attended.' })
+    .optional(),
+  memberType: z
+    .enum(MEMBER_TYPE, { required_error: 'Please select a member type.' }),
 })
