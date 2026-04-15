@@ -74,23 +74,23 @@ const NavUser = () => {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="data-[state=open]:bg-[#b8bd9e]/10 data-[state=open]:text-black hover:bg-[#b8bd9e]/5"
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">{user.initials}</AvatarFallback>
+                <AvatarFallback className="rounded-lg bg-[#b8bd9e] text-white">{user.initials}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs text-muted-foreground">
+                <span className="truncate font-medium text-black">{user.name}</span>
+                <span className="truncate text-xs text-gray-600">
                   {user.email}
                 </span>
               </div>
-              <BsThreeDotsVertical className="ml-auto size-4" />
+              <BsThreeDotsVertical className="ml-auto size-4 text-[#b8bd9e]" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg border-[#b8bd9e] bg-[#b8bd9e] text-black shadow-lg"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}

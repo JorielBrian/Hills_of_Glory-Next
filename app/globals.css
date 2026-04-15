@@ -137,15 +137,15 @@ aside {
 }
 
 .aside_button {
-  @apply flex justify-between gap-2 p-5 text-white rounded-lg hover:bg-gray-100/60 hover:no-underline;
+  @apply flex justify-between gap-2 p-5 text-black rounded-lg hover:bg-[#fdc53a]/20 hover:no-underline transition-colors duration-200;
 }
 
 .aside_button_active {
-  @apply bg-gray-100/20 text-white;
+  @apply bg-[#fdc53a] text-black font-semibold shadow-md;
 }
 
 .aside_icon {
-  @apply size-7 text-white;
+  @apply size-7 text-black;
 }
 
 /* HEADER */

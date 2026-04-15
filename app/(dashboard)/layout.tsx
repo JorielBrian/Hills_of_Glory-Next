@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="flex bg-[#f1f1f1]">
+    <main className="flex bg-[#b8bd9e]/10 min-h-screen">
       <SidebarProvider>
         <Aside />
-        <div className='w-full bg-black/60'>
+        <div className='w-full bg-white/95 backdrop-blur-sm'>
           <Header />
           {children}
           <Footer />

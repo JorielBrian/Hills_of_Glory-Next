@@ -58,7 +58,7 @@ const Dashboard = async () => {
               Welcome back, {session.user.name}!
             </h1>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="text-sm">
+              <Badge variant="secondary" className="text-sm bg-[#b8bd9e] text-black hover:bg-[#a8b08d]">
                 {userType}
               </Badge>
               <span className="text-gray-600 text-sm">
@@ -72,14 +72,14 @@ const Dashboard = async () => {
       {/* Stats Cards */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {canViewAllMembers && (
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Members</CardTitle>
-              <Users className="h-4 w-4 text-muted-foreground" />
+          <Card className="border-[#b8bd9e] shadow-lg hover:shadow-xl transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-[#b8bd9e]/10 border-b border-[#b8bd9e]/20">
+              <CardTitle className="text-sm font-medium text-[#b8bd9e]">Total Members</CardTitle>
+              <Users className="h-4 w-4 text-[#b8bd9e]" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{userStats?.totalMembers || 0}</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold text-black">{userStats?.totalMembers || 0}</div>
+              <p className="text-xs text-gray-600">
                 {userStats?.activeMembers || 0} active members
               </p>
             </CardContent>
@@ -87,42 +87,42 @@ const Dashboard = async () => {
         )}
 
         {canViewAllLifegroups && (
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Life Groups</CardTitle>
-              <Target className="h-4 w-4 text-muted-foreground" />
+          <Card className="border-[#b8bd9e] shadow-lg hover:shadow-xl transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-[#b8bd9e]/10 border-b border-[#b8bd9e]/20">
+              <CardTitle className="text-sm font-medium text-[#b8bd9e]">Life Groups</CardTitle>
+              <Target className="h-4 w-4 text-[#b8bd9e]" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{userStats?.totalLifegroups || 0}</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold text-black">{userStats?.totalLifegroups || 0}</div>
+              <p className="text-xs text-gray-600">
                 {userStats?.activeLifegroups || 0} active groups
               </p>
             </CardContent>
           </Card>
         )}
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Service Attendance</CardTitle>
-            <Calendar className="h-4 w-4 text-muted-foreground" />
+        <Card className="border-[#b8bd9e] shadow-lg hover:shadow-xl transition-shadow">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-[#b8bd9e]/10 border-b border-[#b8bd9e]/20">
+            <CardTitle className="text-sm font-medium text-[#b8bd9e]">Service Attendance</CardTitle>
+            <Calendar className="h-4 w-4 text-[#b8bd9e]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">--</div>
-            <p className="text-xs text-muted-foreground">
+            <div className="text-2xl font-bold text-black">--</div>
+            <p className="text-xs text-gray-600">
               This week
             </p>
           </CardContent>
         </Card>
 
         {isAdmin && (
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Donations</CardTitle>
-              <DollarSign className="h-4 w-4 text-muted-foreground" />
+          <Card className="border-[#b8bd9e] shadow-lg hover:shadow-xl transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-[#b8bd9e]/10 border-b border-[#b8bd9e]/20">
+              <CardTitle className="text-sm font-medium text-[#b8bd9e]">Donations</CardTitle>
+              <DollarSign className="h-4 w-4 text-[#b8bd9e]" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">--</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold text-black">--</div>
+              <p className="text-xs text-gray-600">
                 This month
               </p>
             </CardContent>
@@ -133,19 +133,19 @@ const Dashboard = async () => {
       {/* User's Life Groups */}
       {userLifegroups.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">My Life Groups</h2>
+          <h2 className="text-2xl font-bold text-black mb-4">My Life Groups</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {userLifegroups.map((group) => (
-              <Card key={group.id}>
-                <CardHeader>
-                  <CardTitle className="text-lg">{group.name}</CardTitle>
-                  <CardDescription>{group.description}</CardDescription>
+              <Card key={group.id} className="border-[#b8bd9e] shadow-lg hover:shadow-xl transition-shadow">
+                <CardHeader className="bg-[#b8bd9e]/10 border-b border-[#b8bd9e]/20">
+                  <CardTitle className="text-lg text-black">{group.name}</CardTitle>
+                  <CardDescription className="text-gray-600">{group.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <UserCheck className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">
+                      <UserCheck className="h-4 w-4 text-[#b8bd9e]" />
+                      <span className="text-sm text-gray-600">
                         {group.memberCount} members
                       </span>
                     </div>

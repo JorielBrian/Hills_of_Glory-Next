@@ -47,13 +47,13 @@ const AccountEditPage = async () => {
     <div className="p-6">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-4 mb-6">
-          <Button variant="outline" asChild className="flex items-center gap-2">
+          <Button variant="outline" asChild className="flex items-center gap-2 border-[#b8bd9e] text-[#b8bd9e] hover:bg-[#b8bd9e]/10">
             <a href="/dashboard/account">
               <ArrowLeft className="h-4 w-4" />
               Back to Account
             </a>
           </Button>
-          <h1 className="text-3xl font-bold text-white">Edit My Account</h1>
+          <h1 className="text-3xl font-bold text-black">Edit My Account</h1>
         </div>
         <div className="bg-white rounded-lg shadow-md p-6">
           <AccountForm userData={formattedUserData} />

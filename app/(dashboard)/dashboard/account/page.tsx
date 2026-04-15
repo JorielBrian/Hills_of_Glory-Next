@@ -50,17 +50,17 @@ const AccountPage = async () => {
     <div className="p-6">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-white">My Account</h1>
-          <Button asChild className="bg-emerald-600 hover:bg-emerald-700">
+          <h1 className="text-3xl font-bold text-black">My Account</h1>
+          <Button asChild className="bg-[#fdc53a] hover:bg-[#e6b835] text-black font-semibold border border-[#b8bd9e]">
             <a href="/dashboard/account/edit">Edit My Account</a>
           </Button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Personal Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+          <Card className="bg-[#b8bd9e]/90 border-[#b3be7b] shadow-lg hover:shadow-xl transition-shadow">
+            <CardHeader className="bg-[#b8bd9e] border-b border-[#b8bd9e]/50">
+              <CardTitle className="flex items-center gap-2 text-[#6d705d]">
                 <User className="h-5 w-5" />
                 Personal Information
               </CardTitle>
@@ -102,9 +102,9 @@ const AccountPage = async () => {
           </Card>
 
           {/* Contact Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+          <Card className="bg-[#b8bd9e]/90 border-[#b3be7b] shadow-lg hover:shadow-xl transition-shadow">
+            <CardHeader className="bg-[#b8bd9e] border-b border-[#b8bd9e]/50">
+              <CardTitle className="flex items-center gap-2 text-[#6d705d]">
                 <Phone className="h-5 w-5" />
                 Contact Information
               </CardTitle>
@@ -154,9 +154,9 @@ const AccountPage = async () => {
           </Card>
 
           {/* Professional Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+          <Card className="bg-[#b8bd9e]/90 border-[#b3be7b] shadow-lg hover:shadow-xl transition-shadow">
+            <CardHeader className="bg-[#b8bd9e] border-b border-[#b8bd9e]/50">
+              <CardTitle className="flex items-center gap-2 text-[#6d705d]">
                 <Briefcase className="h-5 w-5" />
                 Professional Information
               </CardTitle>
@@ -171,9 +171,9 @@ const AccountPage = async () => {
           </Card>
 
           {/* Church Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+          <Card className="bg-[#b8bd9e]/90 border-[#b3be7b] shadow-lg hover:shadow-xl transition-shadow">
+            <CardHeader className="bg-[#b8bd9e] border-b border-[#b8bd9e]/50">
+              <CardTitle className="flex items-center gap-2 text-[#6d705d]">
                 <Church className="h-5 w-5" />
                 Church Information
               </CardTitle>
@@ -182,7 +182,7 @@ const AccountPage = async () => {
             <CardContent className="space-y-4">
               <div>
                 <label className="text-sm font-medium text-gray-500">Member Type</label>
-                <Badge variant="secondary" className="text-lg px-3 py-1">
+                <Badge variant="secondary" className="text-lg px-3 py-1 bg-[#fdc53a] text-black hover:bg-[#e6b835]">
                   {userData.memberType}
                 </Badge>
               </div>

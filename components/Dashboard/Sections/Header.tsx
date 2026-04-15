@@ -4,8 +4,8 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const Header = () => {
   return (
-    <header className="bg-[#b8bd9e]">
-        <SidebarTrigger className="absolute top-0 -ml-8"/>
+    <header className="bg-green-800 border-b border-[#fdc53a]/20 shadow-sm">
+        <SidebarTrigger className="absolute top-0 -ml-8 text-white hover:bg-[#fdc53a]/20"/>
         <Link href="/">
             <div className="text_logo flex">
                 <Image 

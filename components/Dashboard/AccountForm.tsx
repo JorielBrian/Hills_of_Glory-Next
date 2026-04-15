@@ -82,12 +82,10 @@ const AccountForm = ({ userData }: AccountFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 text-black">
-      <Card>
-        <CardHeader>
-          <CardTitle>Personal Information</CardTitle>
-          <CardDescription>
-            Update your personal details and contact information.
-          </CardDescription>
+      <Card className="border-[#b8bd9e] shadow-lg">
+        <CardHeader className="bg-[#b8bd9e]/10 border-b border-[#b8bd9e]/20">
+          <CardTitle className="text-[#b8bd9e]">Personal Information</CardTitle>
+          <CardDescription>Update your personal details and contact information.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -171,12 +169,10 @@ const AccountForm = ({ userData }: AccountFormProps) => {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Church Information</CardTitle>
-          <CardDescription>
-            Information about your journey with Hills of Glory.
-          </CardDescription>
+      <Card className="border-[#b8bd9e] shadow-lg">
+        <CardHeader className="bg-[#b8bd9e]/10 border-b border-[#b8bd9e]/20">
+          <CardTitle className="text-[#b8bd9e]">Church Information</CardTitle>
+          <CardDescription>Information about your journey with Hills of Glory.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -241,7 +237,7 @@ const AccountForm = ({ userData }: AccountFormProps) => {
       </Card>
 
       <div className="flex justify-end">
-        <Button type="submit" disabled={isLoading} className="px-8">
+        <Button type="submit" disabled={isLoading} className="px-8 bg-[#fdc53a] hover:bg-[#e6b835] text-black font-semibold border border-[#b8bd9e]">
           {isLoading ? "Updating..." : "Update Account"}
         </Button>
       </div>
