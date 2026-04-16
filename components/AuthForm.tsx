@@ -74,12 +74,16 @@ const AuthForm = <T extends ZodTypeAny>({
 
   return (
     <Card className="w-full sm:max-w-md bg-transparent text-white">
+
+      {/* HEADER */}
       <CardHeader>
         <CardTitle>{isSignIn ? 'Log in to your account' : 'Create an account'}</CardTitle>
         <CardDescription className="text-amber-300">
           {isSignIn ? 'Enter your email and password below to log in' : 'Enter your details below to create your account'}
         </CardDescription>
       </CardHeader>
+
+      {/* FORM */}
       <CardContent>
         <form id="signInForm" onSubmit={form.handleSubmit(handleSubmit)}>
           <FieldGroup>
@@ -123,6 +127,8 @@ const AuthForm = <T extends ZodTypeAny>({
           </FieldGroup>
         </form>
       </CardContent>
+
+      {/* FOOTER */}
       <CardFooter className="flex bg-transparent justify-center">
         <Field orientation="horizontal" className="flex justify-center">
           {isSignIn ? "Don't have an account?" : "Already have an account?"}
