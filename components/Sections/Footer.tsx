@@ -3,21 +3,21 @@ import Link from "next/link";
 
 const Footer = () => {
   const sections = [
-    {
-      title: "Quick Links",
-      links: [
-        { label: "Home", href: "/" },
-        { label: "Ministries", href: "/" },
-        { label: "Services", href: "/" },
-        { label: "About", href: "/" },
-      ],
-    },
+    // {
+    //   title: "Quick Links",
+    //   links: [
+    //     // { label: "Home", href: "/" },
+    //     // { label: "Ministries", href: "/" },
+    //     // { label: "Services", href: "/" },
+    //     // { label: "About", href: "/" },
+    //   ],
+    // },
     {
       title: "Support",
       links: [
         { label: "Contact Us", href: "/" },
-        { label: "Sign In", href: "/sign-in" },
-        { label: "Sign Up", href: "/sign-up" },
+        // { label: "Sign In", href: "/sign-in" },
+        // { label: "Sign Up", href: "/sign-up" },
       ],
     },
     {
@@ -71,7 +71,7 @@ const Footer = () => {
 
         <div className="flex flex-col gap-6 border-t border-white/10 pt-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Hills of Glory Mabalacat. All rights reserved.</p>
-          <div className="flex flex-wrap items-center gap-4">
+          {/* <div className="flex flex-wrap items-center gap-4">
             <Link href="/" className="transition-colors hover:text-[#fdc53a]">
               Privacy Policy
             </Link>
@@ -83,7 +83,7 @@ const Footer = () => {
             <Link href="/" className="transition-colors hover:text-[#fdc53a]">
               Contact
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

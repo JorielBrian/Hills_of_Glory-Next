@@ -5,55 +5,55 @@ import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
+  // NavigationMenuContent,
+  // NavigationMenuItem,
+  // NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
+  // NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import Image from "next/image";
 import Link from "next/link"
 
 const Header = () => {
 
-  const items = [
-    {
-      name: "Administration & Extension Ministry",
-      href: "ministry/administration"
-    },
-    {
-      name: "Consolidation Ministry",
-      href: "ministry/consolidation"
-    },
-    {
-      name: "Creative Ministry",
-      href: "ministry/creative"
-    },
-    {
-      name: "Education Ministry",
-      href: "ministry/education"
-    },
-    {
-      name: "Events Ministry",
-      href: "ministry/events"
-    },
-    {
-      name: "Finance Ministry",
-      href: "ministry/finance"
-    },
-    {
-      name: "Hills Kids Ministry",
-      href: "ministry/hills-kids"
-    },
-    {
-      name: "Hospitality Ministry",
-      href: "ministry/hospitality"
-    },
-    {
-      name: "Music and Arts Ministry",
-      href: "ministry/music-and-arts"
-    }
-  ];
+  // const items = [
+  //   {
+  //     name: "Administration & Extension Ministry",
+  //     href: "ministry/administration"
+  //   },
+  //   {
+  //     name: "Consolidation Ministry",
+  //     href: "ministry/consolidation"
+  //   },
+  //   {
+  //     name: "Creative Ministry",
+  //     href: "ministry/creative"
+  //   },
+  //   {
+  //     name: "Education Ministry",
+  //     href: "ministry/education"
+  //   },
+  //   {
+  //     name: "Events Ministry",
+  //     href: "ministry/events"
+  //   },
+  //   {
+  //     name: "Finance Ministry",
+  //     href: "ministry/finance"
+  //   },
+  //   {
+  //     name: "Hills Kids Ministry",
+  //     href: "ministry/hills-kids"
+  //   },
+  //   {
+  //     name: "Hospitality Ministry",
+  //     href: "ministry/hospitality"
+  //   },
+  //   {
+  //     name: "Music and Arts Ministry",
+  //     href: "ministry/music-and-arts"
+  //   }
+  // ];
 
   const [scroll, setScroll] = useState(false);
   const [scrollDirection, setScrollDirection] = useState('up');
@@ -96,13 +96,13 @@ const Header = () => {
         <NavigationMenu>
           <NavigationMenuList>
 
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <NavigationMenuLink asChild className="home_nav_button">
                 <Link href="/">Home</Link>
               </NavigationMenuLink>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
 
-            <NavigationMenuItem className="bg-transparent w-fit">
+            {/* <NavigationMenuItem className="bg-transparent w-fit">
               <NavigationMenuTrigger className="home_nav_button">Ministries</NavigationMenuTrigger>
               <NavigationMenuContent className="bg-black/70 w-9">
                 <ul className="p-2 flex flex-col gap-4 w-72">
@@ -115,9 +115,9 @@ const Header = () => {
                   ))}
                 </ul>
               </NavigationMenuContent>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
 
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <NavigationMenuLink asChild className="home_nav_button">
                   <Link href="/">Services</Link>
               </NavigationMenuLink>
@@ -127,7 +127,7 @@ const Header = () => {
               <NavigationMenuLink asChild className="home_nav_button">
                 <Link href="/">About</Link>
               </NavigationMenuLink>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
 
           </NavigationMenuList>
         </NavigationMenu>
